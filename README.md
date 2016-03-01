@@ -8,6 +8,13 @@ Hashes are _fast_. Inserting and retrieving records are both constant time (O(1)
 
 ## Release 1, Implement a Hash
 
+### Before you begin
+
+ * Read Wikipedia's entry on [Hash Tables](http://en.wikipedia.org/wiki/Hash_table)
+ * What data structure have you used that provides constant-time reads and writes?
+ * How can you use that structure to your advantage?
+ * How will you produce a [Hash Function](http://en.wikipedia.org/wiki/Hash_function) for a String? Note: it doesn't need to be a perfect hash function, collisions are OK, but how do you deal with them?
+
 ### Interface
 
 Implement and test a `MyHash` class, you can use Ruby's array on this one behind the scenes if you'd like.
@@ -25,23 +32,16 @@ Since a Hash is a kind of Map, it has the same interface:
 
 Each of these methods (except iterate) should be O(1). Note that with a perfect hash function (every key maps to a unique number, there are no "collisions") access is always O(1). You might have a "pretty good" hash function that generates a few collisions. It might take longer that constant time, but it should still remain exceptionally fast as `n` grows.
 
-### Things to think about
-
- * What data structure have you used that provides constant-time reads and writes?
- * How can you use that structure to your advantage?
- * Read Wikipedia's entry on [Hash Tables](http://en.wikipedia.org/wiki/Hash_table) if you get stuck
- * How will you produce a [Hash Function](http://en.wikipedia.org/wiki/Hash_function) for a String? Note: it doesn't need to be a perfect hash function, collisions are OK
-
 ### Timebox your Hash Function
 
-Don't spend longer than 30 minutes on your hash function for String. You can look up various implementations online. It's best to pick the simplest one that makes sense to you, even if it's not perfect. 
+Don't spend longer than 30 minutes on your hash function for String. You can look up various implementations online. It's best to pick the simplest one that makes sense to you, even if it's not perfect.
 
 
 ## Release 2, Why are Hashes fast?
 
 In a file called `notes.md`, describe _why_ Hash operations are so fast. What about them gives us these constant time methods? What are some downsides of a hash?
 
-## Stretch, Implement a HashSet
+## Stretch: Implement a HashSet
 
 Implement and test a `HashSet` class. Your HashSet should conform to the Set interface:
 
