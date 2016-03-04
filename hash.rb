@@ -11,11 +11,11 @@ class Hashish
   end
 
   def set_bucket(key)
-    hash_function(key) % 20
+    hash_function(key.to_s) % 20
   end
 
   def get_bucket(key)
-    @hash[hash_function(key) % 20]
+    @hash[hash_function(key.to_s) % 20]
   end
 
   def set(key, value)
