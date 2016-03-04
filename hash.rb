@@ -1,6 +1,7 @@
 class Hashish
   def initialize
     @hash = []
+    20.times { |i| @hash.push([]) }
   end
 
   def hash_function(str)
@@ -9,28 +10,39 @@ class Hashish
     hash
   end
 
+  def set_bucket(key)
+    hash_function(key) % 20
+  end
+
+  def get_bucket(key)
+    @hash[hash_function(key) % 20]
+  end
+
   def set(key, value)
-    hashed_key = hash_function(key)
-    @hash[hashed_key] = value
+    bucket_id = set_bucket(key)
+    @hash[bucket_id][hash_function(key)] = value
     value
   end
 
   def get(key)
     hashed_key = hash_function(key)
-    return @hash[hashed_key]
+    return get_bucket(key)[hashed_key]
   end
 
   def has_key?(key)
     hashed_key = hash_function(key)
-    return true unless @hash[hashed_key].nil?
+    return true unless get_bucket(key)[hashed_key].nil?
     false
   end
 
   def remove(key)
     hashed_key = hash_function(key)
-    @hash[hashed_key] = nil if @hash[hashed_key]
+    get_bucket(key)[hashed_key] = nil if get_bucket(key)[hashed_key]
     key
   end
 
-  
+  def iterate(&block)
+    
+  end
+
 end

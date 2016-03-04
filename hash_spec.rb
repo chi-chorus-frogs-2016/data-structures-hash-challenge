@@ -27,32 +27,41 @@ describe Hash do
       end
     end
 
-    describe '#get(key)' do
-      it 'retrieves the value stored at key' do
-        hash.set('a', 'b')
-        hash.set('y', 'z')
-        expect(hash.get('y')).to eq('z')
-      end
+  describe '#get(key)' do
+    it 'retrieves the value stored at key' do
+      hash.set('a', 'b')
+      hash.set('y', 'z')
+      expect(hash.get('y')).to eq('z')
     end
+  end
 
-    describe '#has_key?(key)' do
-      it 'returns true if key exists' do
-        hash.set('a', 'b')
-        expect(hash.has_key?('a')).to be true
-      end
-      it 'returns false if key does not exist' do
-        hash.set('a', 'b')
-        expect(hash.has_key?('z')).to be false
-      end
+  describe '#has_key?(key)' do
+    it 'returns true if key exists' do
+      hash.set('a', 'b')
+      expect(hash.has_key?('a')).to be true
     end
+    it 'returns false if key does not exist' do
+      hash.set('a', 'b')
+      expect(hash.has_key?('z')).to be false
+    end
+  end
 
-    describe '#remove(key)' do
-      it 'removes key' do
-        hash.set('a', 'b')
-        hash.set('y', 'z')
-        hash.remove('y')
-        expect(hash.get('y')).to be_nil
-      end
+  describe '#remove(key)' do
+    it 'removes key' do
+      hash.set('a', 'b')
+      hash.set('y', 'z')
+      hash.remove('y')
+      expect(hash.get('y')).to be_nil
     end
+  end
+
+  # describe 'iterate{|value,key| block}' do
+  #   it 'iterates through the hash and passes the block each value and key' do
+  #     hash.set('a', 'b')
+  #     hash.set('y', 'z')
+  #     hash.iterate { |value,key| value = 4}
+  #     expect(hash.get('y')).to eq(4))
+  #   end
+  # end
 
 end
