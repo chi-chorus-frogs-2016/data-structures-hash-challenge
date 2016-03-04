@@ -6,7 +6,7 @@ class Hashish
 
   def hash_function(str)
     hash = 7
-    str.each_char { |chr| hash = (hash * 31) % str.length + chr.ord }
+    str.each_char { |chr| hash = (hash * 31) + chr.ord }
     hash
   end
 
@@ -20,29 +20,28 @@ class Hashish
 
   def set(key, value)
     bucket_id = set_bucket(key)
-    @hash[bucket_id][hash_function(key)] = value
+    @hash[bucket_id] = [key,value]
     value
   end
 
   def get(key)
-    hashed_key = hash_function(key)
-    return get_bucket(key)[hashed_key]
+    return nil if get_bucket(key).nil?
+    get_bucket(key)[1]
   end
 
   def has_key?(key)
-    hashed_key = hash_function(key)
-    return true unless get_bucket(key)[hashed_key].nil?
+    return true unless get_bucket(key).empty?
     false
   end
 
   def remove(key)
-    hashed_key = hash_function(key)
-    get_bucket(key)[hashed_key] = nil if get_bucket(key)[hashed_key]
+    @hash[set_bucket(key)] = nil
     key
   end
 
   def iterate(&block)
-    
+    @hash.each do |bucket|
+      block.call(bucket[0],bucket[1])
+    end
   end
-
 end

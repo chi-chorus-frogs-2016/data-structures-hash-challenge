@@ -55,13 +55,14 @@ describe Hash do
     end
   end
 
-  # describe 'iterate{|value,key| block}' do
-  #   it 'iterates through the hash and passes the block each value and key' do
-  #     hash.set('a', 'b')
-  #     hash.set('y', 'z')
-  #     hash.iterate { |value,key| value = 4}
-  #     expect(hash.get('y')).to eq(4))
-  #   end
-  # end
+  describe 'iterate{|key,value| block}' do
+    it 'iterates through the hash and passes the block each value and key' do
+      hash.set('a', 'b')
+      hash.set('y', 'z')
+      result = []
+      hash.iterate { |key,value| result.push(value) if key == 'y' }
+      expect(result).to eq(['z'])
+    end
+  end
 
 end
